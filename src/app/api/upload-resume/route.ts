@@ -53,8 +53,22 @@ export async function POST(req: NextRequest) {
         const resume = await analyzeResume(rawText, user.email);
 
         return NextResponse.json({ success: true, resume }, { status: 200 });
-    } catch (err) {
+    } catch (err: unknown) {
         console.error("Error uploading/parsing resume:", err);
+
+        if (
+            err instanceof Error &&
+            err.message?.includes("Invalid resume file")
+        ) {
+            return NextResponse.json(
+                {
+                    error: "The uploaded file does not appear to be a valid resume.",
+                    errorCode: "INVALID_RESUME",
+                },
+                { status: 400 }
+            );
+        }
+
         return NextResponse.json(
             {
                 error: "Failed to process resume",

@@ -1,6 +1,7 @@
 import { Resume } from "../models/resume";
 import { User } from "../models/user";
 import { getDb } from "./db";
+import { resetHistory } from "../chatSession";
 
 export async function updateUserResume(
     email: string,
@@ -15,6 +16,7 @@ export async function updateUserResume(
         { returnDocument: "after" }
     );
 
+    resetHistory(email);
     return result;
 }
 
@@ -35,6 +37,5 @@ export async function updateUserTokens(
         { $inc: { tokens: -Math.abs(tokens) } },
         { returnDocument: "after" }
     );
-
     return result;
 }

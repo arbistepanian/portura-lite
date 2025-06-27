@@ -1,19 +1,27 @@
-import { getDocument } from "pdfjs-dist";
-import type { TextItem } from "pdfjs-dist/types/src/display/api";
+// import { PDFDocument, PDFTextField } from "pdf-lib";
 
-export async function readPDFFile(buffer: Buffer): Promise<string> {
-    const pdf = await getDocument({ data: buffer }).promise;
-    const textContent: string[] = [];
+// export async function readPDFFile(buffer: Buffer): Promise<string> {
+//     try {
+//         const pdfDoc = await PDFDocument.load(buffer);
+//         const form = pdfDoc.getForm();
+//         const textFields = form
+//             .getFields() // Get all fields
+//             .filter((field) => field.constructor.name === "PDFTextField"); // Filter for text fields
 
-    for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const content = await page.getTextContent();
-        const pageText = content.items
-            .filter((item): item is TextItem => "str" in item)
-            .map((item) => item.str)
-            .join(" ");
-        textContent.push(pageText);
-    }
+//         const extractedText: string[] = [];
+//         for (const textField of textFields) {
+//             if (textField.constructor.name === "PDFTextField") {
+//                 // Ensure it's a text field
+//                 const text = (textField as PDFTextField).getText();
+//                 extractedText.push(text || "");
+//             }
+//         }
 
-    return textContent.join("\n\n");
-}
+//         const text = extractedText.join("\n\n");
+//         console.log("text from pdf: ", text);
+//         return text;
+//     } catch (error) {
+//         console.error("Error extracting text from PDF form fields:", error);
+//         throw new Error("Failed to extract text from PDF form fields");
+//     }
+// }

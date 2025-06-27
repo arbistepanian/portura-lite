@@ -52,7 +52,7 @@ export default function UploadResume({ onUploadComplere }: UploadResumeProps) {
                 <div>
                     <input
                         type="file"
-                        accept=".pdf,.docx"
+                        accept=".docx"
                         ref={fileInputRef}
                         className="hidden"
                         onChange={handleFileChange}
@@ -61,14 +61,21 @@ export default function UploadResume({ onUploadComplere }: UploadResumeProps) {
                         Upload Resume
                     </Button>
                 </div>
-                {isPending && (
-                    <Paragraph className="flex items-center justify-end gap-2">
-                        <span className="loader w-4 h-4 border-2 border-t-transparent border-[var(--foreground)] rounded-full animate-spin" />
-                        <span>Analyzing your resume...</span>
-                    </Paragraph>
-                )}
+
+                <Paragraph className="flex items-center justify-end gap-2">
+                    {isPending ? (
+                        <>
+                            <span className="loader w-4 h-4 border-2 border-t-transparent border-[var(--foreground)] rounded-full animate-spin" />
+                            <span>Analyzing your resume...</span>
+                        </>
+                    ) : (
+                        <span>Upload your resume in .docx format</span>
+                    )}
+                </Paragraph>
             </div>
-            {error && <p className="mt-2 text-red-500 text-sm">{error}</p>}
+            {error && (
+                <p className="mt-2 text-red-500 text-sm w-full">{error}</p>
+            )}
         </div>
     );
 }

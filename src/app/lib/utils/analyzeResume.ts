@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { Resume } from "@/app/lib/models/resume"; // make sure the types are exported here
+import { Resume } from "@/app/lib/models/resume";
 import { updateUserResume, updateUserTokens } from "../db/users";
 
 const openai = new OpenAI({
@@ -10,21 +10,24 @@ export async function analyzeResume(
     rawText: string,
     userEmail: string
 ): Promise<Resume> {
-    const prompt = `You are a strict resume parser. Your job is to extract structured JSON from the resume text **without adding or hallucinating information**. Only extract what is explicitly present in the resume text, except for:
+    const prompt = `You are a strict resume parser. Your job is to extract structured JSON from the resume text **without adding or hallucinating information**.
+
+If the input is **not a resume**, or is too vague, short, or irrelevant to extract anything useful, return:
+
+\`\`\`json
+{ "error": "Not a valid resume" }
+\`\`\`
+
+Otherwise, extract only what is **explicitly present** in the text, except for:
 
 - Country and language codes: You may infer these.
 - Dates: You may standardize them to ISO if they are present.
 
-Descriptions must retain the original wording from the resume and be formatted using **markdown syntax**, including:
-- Bullet points
-- Bold or italic text
-- Headings (if any)
-- Links (if present)
-Do not rewrite or enhance descriptions. Just structure them.
+Descriptions must retain the original wording and be formatted in **markdown syntax** (e.g., bullet points, bold text, etc.).
 
-Include only LinkedIn or personal portfolio links in \`websites\`. Discard all other URLs.
+Only include LinkedIn or personal portfolio URLs in \`websites\`. Discard all others.
 
-Return a single, valid JSON object with the following structure:
+Return a single valid JSON object using this schema:
 
 {
   "name": string,
@@ -57,10 +60,10 @@ Types:
 - UserLanguage = { id, code, name, level }
 
 ⚠️ Rules:
-- Do **not** invent or rephrase descriptions.
-- Do **not** generate text not explicitly found in the resume.
-- Do **not** include unrelated URLs in websites.
-- Do **not** include explanatory text before or after the JSON.
+- Do NOT invent or rephrase descriptions.
+- Do NOT generate content that isn’t in the resume.
+- Do NOT include unrelated URLs.
+- Do NOT add explanatory text outside the JSON block.
 
 Resume Text:
 \`\`\`
@@ -74,27 +77,28 @@ ${rawText}
         temperature: 0.2,
     });
 
-    const json = response.choices[0]?.message?.content;
-    console.log("OpenAI response:", json);
+    const rawOutput = response.choices[0]?.message?.content;
+    console.log("OpenAI response:", rawOutput);
 
-    if (!json) throw new Error("Failed to get response from OpenAI");
+    if (!rawOutput) throw new Error("No response from OpenAI");
 
-    const cleanJson = json
+    const cleanJson = rawOutput
         .replace(/^```json\s*/i, "")
         .replace(/```$/, "")
         .trim();
 
+    const parsed = JSON.parse(cleanJson);
+
     const totalTokens = response.usage?.total_tokens || 0;
-    updateUserTokens(userEmail, totalTokens);
+    await updateUserTokens(userEmail, totalTokens);
 
-    const resume = JSON.parse(cleanJson) as Resume;
-
-    updateUserResume(userEmail, resume);
-
-    try {
-        return resume;
-    } catch (err) {
-        console.error("Failed to parse OpenAI response:", err);
-        throw new Error("Could not parse structured resume JSON");
+    if (parsed.error) {
+        console.warn("Resume parsing failed:", parsed.error);
+        throw new Error("Invalid resume file. Please upload a valid resume.");
     }
+
+    const resume = parsed as Resume;
+
+    await updateUserResume(userEmail, resume);
+    return resume;
 }

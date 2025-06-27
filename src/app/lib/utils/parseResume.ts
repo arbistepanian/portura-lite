@@ -16,7 +16,5 @@ export async function parseResume(
         return await readDocxFile(buffer);
     }
 
-    throw new Error(
-        "Unsupported file format. Only .pdf and .docx are allowed."
-    );
+    throw new Error("Unsupported file format. Only .docx are allowed.");
 }

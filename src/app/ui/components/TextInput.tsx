@@ -2,6 +2,7 @@
 
 import { InputHTMLAttributes } from "react";
 import { cn } from "@/app/lib/utils/utils";
+import Label from "./Label";
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
@@ -14,20 +15,18 @@ export default function TextInput({
     ...props
 }: TextInputProps) {
     return (
-        <div className="mb-4">
+        <div className="flex w-full flex-col justify-start gap-2">
             {label && (
-                <label
-                    htmlFor={id}
-                    className="block text-sm font-medium text-[var(--foreground)] mb-1">
+                <Label htmlFor={id} className="mb-1">
                     {label}
-                </label>
+                </Label>
             )}
             <input
                 id={id}
                 {...props}
                 className={cn(
                     "w-full px-4 py-2 rounded border focus:outline-none focus:ring-2",
-                    "bg-[var(--background)] text-[var(--foreground)] placeholder-muted border-[var(--muted)] focus:ring-primary",
+                    "bg-[var(--background)] text-[var(--foreground)] placeholder-muted border-[var(--muted)] focus:ring-[var(--primary)]",
                     className
                 )}
             />
