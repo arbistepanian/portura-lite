@@ -87,7 +87,7 @@ export default function ResumeChat({ greeting }: { greeting: string }) {
     }
 
     return (
-        <Div className="fixed bottom-4 right-4 w-96 md:w-130 flex flex-col overflow-hidden gap-2 shadow-md border border-gray-300 p-4 rounded-md">
+        <Div className="fixed bottom-4 right-4 w-96 md:w-130 flex flex-col overflow-hidden gap-2 shadow-md border bg-[var(--background)] border-gray-300 p-4 rounded-md">
             <Div className="flex justify-between items-center p-2 bg-[var(--background-2)] rounded-md">
                 <Div className="font-semibold flex items-center justify-start gap-4 mt-0">
                     <Image

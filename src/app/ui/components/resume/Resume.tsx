@@ -23,7 +23,7 @@ Let’s get started, what would you like to explore?`;
 
     return (
         <div className="w-full px-4 sm:px-6 py-4 sm:py-6 space-y-6">
-            <div className="w-lg mx-auto">
+            <div className="w-full sm:w-lg mx-auto">
                 <UploadResume onUploadComplere={setResume} />
             </div>
             {resume && (

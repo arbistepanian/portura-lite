@@ -47,9 +47,9 @@ export default function UploadResume({ onUploadComplere }: UploadResumeProps) {
     };
 
     return (
-        <div className="w-full flex flex-col items-center justify-between gap-2 bg-[var(--background-2)] p-4 rounded-lg">
-            <div className="w-full flex items-center justify-between gap-2">
-                <div>
+        <div className="w-full flex flex-col items-center justify-between gap-4 bg-[var(--background-2)] p-4 rounded-lg">
+            <div className="w-full flex flex-col items-center justify-center sm:flex-row sm:justify-between gap-4">
+                <div className="w-40">
                     <input
                         type="file"
                         accept=".docx"
@@ -62,7 +62,7 @@ export default function UploadResume({ onUploadComplere }: UploadResumeProps) {
                     </Button>
                 </div>
 
-                <Paragraph className="flex items-center justify-end gap-2">
+                <Paragraph className="flex items-center justify-center sm:justify-end gap-2">
                     {isPending ? (
                         <>
                             <span className="loader w-4 h-4 border-2 border-t-transparent border-[var(--foreground)] rounded-full animate-spin" />

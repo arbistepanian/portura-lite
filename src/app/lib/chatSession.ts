@@ -5,7 +5,8 @@ export type ChatMessage = {
     content: string;
 };
 
-export async function getHistory(key: string): Promise<ChatMessage[]> {
+export async function getHistory(email: string): Promise<ChatMessage[]> {
+    const key = getChatCacheKey(email);
     const data = await redis.get<ChatMessage[]>(key);
 
     //console.log(data);
