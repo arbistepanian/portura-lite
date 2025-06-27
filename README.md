@@ -25,14 +25,27 @@ Built with **React**, **Next.js**, **MongoDB**, and **OpenAI**.
 
 ---
 
+## 🌟 About Portura.ai
+
+**[Portura.ai](https://portura.ai)** is the full-featured version of this project — designed to be the next-generation portfolio and career platform. While **Portura Lite** focuses on resume parsing and feedback, **Portura.ai** offers:
+
+-   Interactive career portfolios
+-   AI-driven career insights and trajectory planning
+-   Recruiter-ready profiles
+-   and more…
+
+🚀 Built for individuals who want to **stand out**, and companies who want to **hire smarter**.
+
+---
+
 ## 🏗️ Tech Stack
 
 -   **Frontend**: Next.js (App Router), Tailwind CSS
 -   **Backend**: API Routes (Next.js)
 -   **Database**: MongoDB Atlas
 -   **Auth**: NextAuth.js (email/password or GitHub/Google)
--   **AI**: OpenAI GPT-4
--   **PDF/DOCX Parsing**: `pdf-parse`, `mammoth`
+-   **AI**: OpenAI GPT-4.1
+-   **DOCX Parsing**: `mammoth`
 
 ---
 
@@ -40,7 +53,7 @@ Built with **React**, **Next.js**, **MongoDB**, and **OpenAI**.
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/your-username/portura-lite.git
+    git clone https://github.com/arbistepanian/portura-lite.git
     cd portura-lite
     ```
 
