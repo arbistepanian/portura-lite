@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/app/lib/utils/utils";
 
 type HeadingLevel = 1 | 2 | 3 | 4;
 
@@ -12,10 +12,10 @@ interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
 const baseStyles = "text-[var(--foreground)] font-bold tracking-tight";
 
 const levelClasses: Record<HeadingLevel, string> = {
-    1: "text-4xl sm:text-5xl",
-    2: "text-3xl sm:text-4xl",
-    3: "text-2xl sm:text-3xl",
-    4: "text-xl sm:text-2xl",
+    1: "text-xl md:text-2xl mb-4",
+    2: "text-lg md:text-xl mb-4",
+    3: "text-md md:text-lg mb-4",
+    4: "text-md md:text-md mb-4",
 };
 
 export default function Heading({
@@ -28,7 +28,7 @@ export default function Heading({
 
     return (
         <Tag
-            className={cn([baseStyles, levelClasses[level], className, "mb-4"])}
+            className={cn([baseStyles, levelClasses[level], className])}
             {...props}>
             {children}
         </Tag>

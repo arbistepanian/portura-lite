@@ -1,16 +1,22 @@
-"use client";
+import { redirect } from "next/navigation";
+import Page from "../ui/components/Page";
+import Resume from "../ui/components/resume/Resume";
+import { getLoggedInUser } from "../lib/utils/loggedInUser";
+import { toPlainObject } from "../lib/utils/utils";
 
-import { signOut } from "next-auth/react";
-import Button from "../ui/components/Button";
-import Heading from "../ui/components/Heading";
+export default async function DashboardPage() {
+    const user = await getLoggedInUser();
 
-export default function DashboardPage() {
+    if (!user || !user.email) {
+        redirect("/login");
+    }
+
     return (
-        <main className="min-h-screen flex flex-col items-center justify-center">
-            <Heading>Welcome to your dashboard</Heading>
-            <Button onClick={() => signOut({ callbackUrl: "/" })}>
-                Sign Out
-            </Button>
-        </main>
+        <Page
+            userName={user.name || "User"}
+            userImage={user.image || ""}
+            title="Dashboard">
+            <Resume user={toPlainObject(user)} />
+        </Page>
     );
 }

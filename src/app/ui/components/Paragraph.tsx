@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/app/lib/utils/utils";
 
 interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement> {
     variant?: "default" | "muted" | "subtle";

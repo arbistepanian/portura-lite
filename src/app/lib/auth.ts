@@ -1,6 +1,6 @@
 import GoogleProvider from "next-auth/providers/google";
 import { AuthOptions } from "next-auth";
-import { getPorturaLightDb } from "./db/db";
+import { getDb } from "./db/db";
 
 export const authOptions: AuthOptions = {
     providers: [
@@ -17,7 +17,7 @@ export const authOptions: AuthOptions = {
     },
     callbacks: {
         async signIn({ user }) {
-            const db = await getPorturaLightDb();
+            const db = await getDb();
             const users = db.collection("users");
 
             const existingUser = await users.findOne({ email: user.email });
@@ -28,6 +28,7 @@ export const authOptions: AuthOptions = {
                     email: user.email,
                     name: user.name,
                     image: user.image,
+                    tokens: 1000000,
                     createdAt: new Date(),
                 });
             }
