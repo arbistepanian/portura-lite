@@ -28,7 +28,7 @@ export const authOptions: AuthOptions = {
                     email: user.email,
                     name: user.name,
                     image: user.image,
-                    tokens: 1000000,
+                    tokens: parseInt(process.env.TOKENS!),
                     createdAt: new Date(),
                 });
             }
