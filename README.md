@@ -21,7 +21,7 @@ Built with **React**, **Next.js**, **MongoDB**, and **OpenAI**.
 
 🔗 [Live Preview on Vercel](https://portura-lite.vercel.app)
 
-![Homepage Screenshot](./public/screenshot-home.png)
+![Homepage Screenshot](./public/screenshot-01.png)
 
 ---
 
