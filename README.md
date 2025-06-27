@@ -68,13 +68,21 @@ Built with **React**, **Next.js**, **MongoDB**, **Redis** and **OpenAI**.
 3. **Add Environment Variables**
 
     GOOGLE_CLIENT_ID=your_google_client_id
+
     GOOGLE_CLIENT_SECRET=your_google_client_secret
+
     AUTH_SECRET=your_random_secret
+
     MONGODB_URI=your_mongodb_connection_uri
+
     MONGODB_DB_NAME=your_db_name
+
     OPENAI_API_KEY=your_openai_api_key
+
     UPSTASH_REDIS_REST_URL=your_upstash_url
+
     UPSTASH_REDIS_REST_TOKEN=your_upstash_token
+
     TOKENS=250000
 
 4. Run the App
@@ -90,4 +98,5 @@ MIT License
 ## 🙋‍♂️ Author
 
 Made by @ArbiStepanian
+
 Inspired by the vision for [portura.ai](https://portura.ai)
