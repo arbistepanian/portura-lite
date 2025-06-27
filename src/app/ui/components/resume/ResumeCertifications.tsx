@@ -21,7 +21,7 @@ export default function ResumeCertifications({
             <div className="space-y-4">
                 {certifications.map((cert: Certification) => (
                     <div
-                        key={cert.id}
+                        key={`${cert.name}-${cert.issuer}`}
                         className="border border-[var(--border)] bg-[var(--surface)] rounded-md p-4">
                         <Heading level={3} className="text-lg font-semibold">
                             {cert.name}

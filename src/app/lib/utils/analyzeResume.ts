@@ -52,12 +52,12 @@ Return a single valid JSON object using this schema:
 }
 
 Types:
-- Experience = { id, company, title, startDate, endDate?, description? (in markdown) }
-- Education = { id, institution, degree, fieldOfStudy?, startDate, endDate?, description? (in markdown) }
-- Certification = { id, name, issuer?, issueDate?, expirationDate?, credentialUrl? }
-- Project = { id, name, projectType?, description? (in markdown), tags?, workSampleUrl?, previewUrl? }
+- Experience = { company, title, startDate?, endDate?, description? (in markdown) }
+- Education = { institution, degree?, fieldOfStudy?, startDate?, endDate?, description? (in markdown) }
+- Certification = { name, issuer?, issueDate?, expirationDate?, credentialUrl? }
+- Project = { name, projectType?, description? (in markdown), tags?, workSampleUrl?, previewUrl? }
 - Website = { url, title } — must be LinkedIn or personal portfolio only
-- UserLanguage = { id, code, name, level }
+- UserLanguage = { code, name, level }
 
 ⚠️ Rules:
 - Do NOT invent or rephrase descriptions.

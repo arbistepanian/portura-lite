@@ -23,25 +23,22 @@ export type Website = {
 };
 
 export type Experience = {
-    id: string;
     company: string;
     title: string;
-    startDate: string;
+    startDate?: string;
     endDate?: string;
     description?: string;
 };
 
 export type Education = {
-    id: string;
     institution: string;
-    degree: string;
+    degree?: string;
     fieldOfStudy?: string;
-    startDate: string;
+    startDate?: string;
     endDate?: string;
 };
 
 export type Certification = {
-    id: string;
     name: string;
     issuer?: string;
     issueDate?: string;
@@ -50,7 +47,6 @@ export type Certification = {
 };
 
 export type Project = {
-    id: string;
     name: string;
     projectType?: string;
     description?: string;

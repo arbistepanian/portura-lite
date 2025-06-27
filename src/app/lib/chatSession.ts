@@ -18,7 +18,7 @@ export async function appendMessage(
     message: ChatMessage
 ): Promise<void> {
     const key = getChatCacheKey(email);
-    const history = await getHistory(key);
+    const history = await getHistory(email);
     history.push(message);
     await redis.set(key, JSON.stringify(history));
 }

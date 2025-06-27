@@ -23,7 +23,7 @@ export default function ResumeProjects({ resume }: ResumeProjectsProps) {
             <div className="space-y-6">
                 {projects.map((proj: Project) => (
                     <div
-                        key={proj.id}
+                        key={proj.name}
                         className="border border-[var(--border)] rounded-md p-4 bg-[var(--surface)]">
                         <Heading
                             level={4}

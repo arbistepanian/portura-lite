@@ -19,7 +19,7 @@ export default function ResumeEducation({ resume }: ResumeEducationProps) {
             <div className="space-y-6">
                 {educationList.map((edu: Education) => (
                     <div
-                        key={edu.id}
+                        key={`${edu.institution}-${edu.degree}`}
                         className="border-l-2 border-[var(--border)] pl-4 relative">
                         <div className="absolute -left-1 top-1 w-2 h-2 bg-[var(--primary)] rounded-full" />
 
@@ -28,8 +28,12 @@ export default function ResumeEducation({ resume }: ResumeEducationProps) {
                         </Heading>
 
                         <Paragraph className="text-sm text-[var(--muted)]">
-                            {formatDate(edu.startDate)} —{" "}
-                            {edu.endDate ? formatDate(edu.endDate) : "Present"}
+                            {edu.startDate && `${formatDate(edu.startDate)} — `}
+                            {edu.endDate
+                                ? formatDate(edu.endDate)
+                                : edu.startDate
+                                ? "Present"
+                                : ""}
                         </Paragraph>
 
                         {edu.fieldOfStudy && (

@@ -21,7 +21,7 @@ export default function ResumeExperience({ resume }: ResumeExperienceProps) {
             <div className="space-y-6">
                 {experiences.map((exp: Experience) => (
                     <div
-                        key={exp.id}
+                        key={`${exp.company}-${exp.title}`}
                         className="relative border-l-2 border-[var(--border)] pl-4">
                         <div className="absolute -left-1 top-1 w-2 h-2 bg-[var(--primary)] rounded-full" />
 
@@ -30,8 +30,12 @@ export default function ResumeExperience({ resume }: ResumeExperienceProps) {
                         </Heading>
 
                         <Paragraph className="text-sm text-[var(--muted)]">
-                            {formatDate(exp.startDate)} —{" "}
-                            {exp.endDate ? formatDate(exp.endDate) : "Present"}
+                            {exp.startDate && `${formatDate(exp.startDate)} — `}
+                            {exp.endDate
+                                ? formatDate(exp.endDate)
+                                : exp.startDate
+                                ? "Present"
+                                : ""}
                         </Paragraph>
 
                         {exp.description && (
