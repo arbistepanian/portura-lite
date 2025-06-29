@@ -10,7 +10,7 @@ export default async function HomePage() {
     const session = await getServerSession(authOptions);
 
     return (
-        <main className="min-h-screen flex items-center justify-center bg-background text-text">
+        <main className="min-h-screen flex items-center justify-center bg-background text-text px-4">
             <div className="text-center space-y-6">
                 <Image
                     src="/portura-lite-homepage-hero.jpg"
