@@ -108,6 +108,6 @@ export async function GET() {
     }
 
     const history = await getHistory(user.email);
-    console.log("history:", history);
+    //console.log("history:", history);
     return NextResponse.json({ history });
 }
