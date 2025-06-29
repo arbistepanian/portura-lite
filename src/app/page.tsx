@@ -4,6 +4,7 @@ import LinkButton from "./ui/components/LinkButton";
 import Heading from "./ui/components/Heading";
 import Paragraph from "./ui/components/Paragraph";
 import Image from "next/image";
+import Link from "./ui/components/Link";
 
 export default async function HomePage() {
     const session = await getServerSession(authOptions);
@@ -25,6 +26,14 @@ export default async function HomePage() {
                 <LinkButton href={session ? "/dashboard" : "/login"}>
                     {session ? "Go to Dashboard" : "Login with Google"}
                 </LinkButton>
+                <Paragraph className="text-lg text-[var(--foreground) mb-8">
+                    <span>Made By </span>
+                    <Link
+                        href="https://github.com/arbistepanian"
+                        target="_blank">
+                        Arbi Stepanian
+                    </Link>
+                </Paragraph>
             </div>
         </main>
     );

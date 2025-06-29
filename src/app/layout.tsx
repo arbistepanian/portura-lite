@@ -15,6 +15,30 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
     title: "Portura Lite",
     description: "AI-Powered resume assistant",
+    openGraph: {
+        title: "Portura Lite",
+        description: "AI-Powered resume assistant to help you shine",
+        url: "https://portura-lite.vercel.app/",
+        siteName: "Portura",
+        images: [
+            {
+                url: "https://portura-lite.vercel.app/portura-lite-homepage-hero.jpg",
+                width: 1200,
+                height: 630,
+                alt: "Portura Lite Open Graph Image",
+            },
+        ],
+        locale: "en_US",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Portura Lite",
+        description: "AI-Powered resume assistant to help you shine",
+        images: [
+            "https://portura-lite.vercel.app/portura-lite-homepage-hero.jpg",
+        ],
+    },
 };
 
 export default function RootLayout({
