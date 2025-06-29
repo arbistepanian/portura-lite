@@ -64,12 +64,20 @@ export default function ResumeChat({ greeting }: { greeting: string }) {
             method: "POST",
             body: JSON.stringify({ message: input }),
         });
+
         const data = await res.json();
 
-        setMessages((prev) => [
-            ...prev,
-            { role: "assistant", content: data.reply },
-        ]);
+        if (res.ok) {
+            setMessages((prev) => [
+                ...prev,
+                { role: "assistant", content: data.reply },
+            ]);
+        } else {
+            setMessages((prev) => [
+                ...prev,
+                { role: "assistant", content: data.error },
+            ]);
+        }
         setLoading(false);
     };
 

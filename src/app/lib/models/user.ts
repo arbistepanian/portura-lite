@@ -6,7 +6,7 @@ export interface User {
     email: string;
     name?: string;
     image?: string;
-    tokens?: number;
+    tokens: number;
     resume?: Resume;
     createdAt: Date;
 }

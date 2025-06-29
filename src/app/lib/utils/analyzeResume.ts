@@ -78,7 +78,8 @@ ${rawText}
     });
 
     const rawOutput = response.choices[0]?.message?.content;
-    console.log("OpenAI response:", rawOutput);
+
+    //console.log("OpenAI response:", rawOutput);
 
     if (!rawOutput) throw new Error("No response from OpenAI");
 

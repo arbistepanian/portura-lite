@@ -21,6 +21,15 @@ export async function POST(req: NextRequest) {
         );
     }
 
+    if (user.tokens <= 0)
+        return NextResponse.json(
+            {
+                error: "You’ve run out of tokens. Please purchase tokens to continue.",
+                errorCode: "OUT_OF_TOKENS",
+            },
+            { status: 402 }
+        );
+
     const history = await getHistory(user.email);
 
     const systemPrompt = `

@@ -48,6 +48,15 @@ export async function POST(req: NextRequest) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
+    if (user.tokens <= 0)
+        return NextResponse.json(
+            {
+                error: "You’ve run out of tokens. Please purchase tokens to continue.",
+                errorCode: "OUT_OF_TOKENS",
+            },
+            { status: 402 }
+        );
+
     try {
         const rawText = await parseResume(buffer, fileName);
         const resume = await analyzeResume(rawText, user.email);
